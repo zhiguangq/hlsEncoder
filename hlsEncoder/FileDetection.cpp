@@ -34,10 +34,39 @@ FileDetection::~FileDetection(void)
 void FileDetection::run(void)
 {
 	LOG(INFO) << "File detection begin ." ;
+    m_lastXMLGeneraateTime.update();
 
     while(true)
     {
         boost::shared_ptr<StringSet>  newSet(new StringSet);
+
+        //连续4小时内没有发现新的xml文件，就要上报给监控
+        if(m_lastXMLGeneraateTime.elapsed() > 14400000000)   // 4*3600秒 // elapsed 单位是1秒=1000000
+        {
+            LOG(WARNING) << "No new xml file in 4 hour" ;
+            // 发送给监控
+            try
+            {
+                std::string host = "10.27.69.84";
+                int         port = 9090;
+                LOG(INFO) << "Send Message to " << host << ":" << port;
+                Poco::Net::HTTPClientSession s(host.c_str(), port);
+	            Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/api/monitor/message.json");
+	            std::string body("{\"Message\":\"Channel[" + Configure::instance().m_encodeChannel + "] No new xml file in 4 hour\"}");
+            
+	            request.setContentLength((int) body.length());
+	            s.sendRequest(request) << body;
+	            Poco::Net::HTTPResponse response;
+	            std::istream& rs = s.receiveResponse(response);
+	            std::ostringstream ostr;
+	            Poco::StreamCopier::copyStream(rs, ostr);
+                m_lastXMLGeneraateTime.update();
+            }
+            catch(...)
+            {
+                LOG(INFO) << "Send Message exception.";
+            }
+        }
 
         if(boost::filesystem::exists(m_scanPath))
         {
@@ -98,9 +127,11 @@ void FileDetection::run(void)
                                         }
                                         catch(...)
                                         {
-                                            LOG(INFO) << "Send hartbeat exception.";
+                                            LOG(INFO) << "Send Message exception.";
                                         }
                                     }
+
+                                    m_lastXMLGeneraateTime.update();
                                 }
                             }
                         }
