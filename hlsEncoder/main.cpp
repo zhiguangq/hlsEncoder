@@ -42,12 +42,19 @@ DWORD WINAPI ServiceWorkerThread (LPVOID lpParam)
 			return ERROR_SUCCESS;
 		}
         
+#ifdef WIN_SERVICE
 		// 初始化网络磁盘
 		if(!SystemInfo::instance().initNetWorkDisk())
 		{
 			LOG(ERROR) << "init NetWorkDisk error.";
 			return ERROR_SUCCESS;
 		}
+#else
+        Configure::instance().m_inputXMLPath.objectName = "F:\\movie\\rtvxml";
+        Configure::instance().m_inputTSPath.objectName = "F:\\movie\\nas";
+        Configure::instance().m_outputXMLPath.objectName = "F:\\movie\\replayxml";
+        Configure::instance().m_outputTSPath.objectName = "F:\\movie\\replaytv";
+#endif
 
 		// 启动文件扫描模块
 		LOG(INFO) << ("Start detection.");

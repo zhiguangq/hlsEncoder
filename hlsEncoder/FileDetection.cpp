@@ -9,6 +9,10 @@
 #include <glog/logging.h>
 #include <boost/filesystem/path.hpp>
 #include <boost/filesystem/operations.hpp>
+#include "Poco/Net/HTTPClientSession.h"
+#include "Poco/Net/HTTPRequest.h"
+#include "Poco/Net/HTTPResponse.h"
+#include "Poco/StreamCopier.h"
 
 FileDetection::FileDetection(std::string path)
     : m_scanPath(path)
@@ -69,6 +73,34 @@ void FileDetection::run(void)
                                     LOG(INFO)  << "Find : " << itBegin->path().string() << ".  its TS file : " <<
                                         xmlInfo.AssetName ;
                                     TaskQueue::instance().producer(itBegin->path().string(), xmlInfo.AssetName);
+
+                                    //检测TS文件是否存在，如果不存在，则通知监控
+                                    if(!boost::filesystem::exists(std::string(Configure::instance().m_inputTSPath.objectName + \
+                                        "\\" + xmlInfo.AssetName).c_str()))
+                                    {
+                                        LOG(WARNING) << "Can not find TS file : " << std::string(Configure::instance().m_inputTSPath.objectName + "\\" + xmlInfo.AssetName).c_str();
+                                        // 发送给监控
+                                        try
+                                        {
+                                            std::string host = "10.27.69.84";
+                                            int         port = 9090;
+                                            LOG(INFO) << "Send Message to " << host << ":" << port;
+                                            Poco::Net::HTTPClientSession s(host.c_str(), port);
+	                                        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/api/monitor/message.json");
+	                                        std::string body("{\"Message\":\"Can not find TS file ["+ xmlInfo.AssetName + "]\"}");
+            
+	                                        request.setContentLength((int) body.length());
+	                                        s.sendRequest(request) << body;
+	                                        Poco::Net::HTTPResponse response;
+	                                        std::istream& rs = s.receiveResponse(response);
+	                                        std::ostringstream ostr;
+	                                        Poco::StreamCopier::copyStream(rs, ostr);
+                                        }
+                                        catch(...)
+                                        {
+                                            LOG(INFO) << "Send hartbeat exception.";
+                                        }
+                                    }
                                 }
                             }
                         }
