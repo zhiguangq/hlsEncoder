@@ -13,6 +13,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{ddc753de-734a-462c-ad2a-2ef22a3a5794}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\facility">
+      <UniqueIdentifier>{7577ab41-10e6-4f7b-9846-0ff5901187f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\facility\include">
+      <UniqueIdentifier>{d3075767-2328-47e5-b73a-792f3a6293f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\facility\src">
+      <UniqueIdentifier>{acc6f6cd-b331-400d-aa13-3a122553dce8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\net">
+      <UniqueIdentifier>{63ded42b-8a76-46f7-9139-b32cc88681d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\net\include">
+      <UniqueIdentifier>{2aa981f3-8074-4c04-a7a8-d79f3d7afb53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\net\src">
+      <UniqueIdentifier>{0a5f1571-8c99-4456-b717-ba26bcfda5a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -26,6 +47,57 @@
     </ClCompile>
     <ClCompile Include="EncoderManager.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\facility\Base64.cpp">
+      <Filter>base\facility</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\facility\Clock.cpp">
+      <Filter>base\facility</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\facility\Demangle.cpp">
+      <Filter>base\facility</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\facility\ErrorMsg.cpp">
+      <Filter>base\facility</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\facility\Exception.cpp">
+      <Filter>base\facility</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\facility\Json.cpp">
+      <Filter>base\facility</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\facility\log.cpp">
+      <Filter>base\facility</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\facility\MD5.cpp">
+      <Filter>base\facility</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\facility\SysHealth.cpp">
+      <Filter>base\facility</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\facility\Thread.cpp">
+      <Filter>base\facility</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\net\HTTPClient.cpp">
+      <Filter>base\net</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\net\HTTPConnection.cpp">
+      <Filter>base\net</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\net\HTTPConnectionManager.cpp">
+      <Filter>base\net</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\net\HTTPReply.cpp">
+      <Filter>base\net</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\net\HTTPRequestHandler.cpp">
+      <Filter>base\net</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\net\HTTPServer.cpp">
+      <Filter>base\net</Filter>
+    </ClCompile>
+    <ClCompile Include="ocn\base\net\StreamSocket.cpp">
+      <Filter>base\net</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +118,78 @@
     </ClInclude>
     <ClInclude Include="EncoderManager.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\Base64.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\Clock.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\Demangle.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\ErrorMsg.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\Exception.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\Hash.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\Json.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\log.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\ThreadHolder.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\Thread.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\SysHealth.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\Singleton.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\facility\MD5.h">
+      <Filter>base\facility\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\net\GeneralError.h">
+      <Filter>base\net\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\net\Handler.h">
+      <Filter>base\net\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\net\HTTPClient.h">
+      <Filter>base\net\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\net\HTTPConnection.h">
+      <Filter>base\net\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\net\HTTPConnectionManager.h">
+      <Filter>base\net\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\net\HTTPHeader.h">
+      <Filter>base\net\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\net\HTTPReply.h">
+      <Filter>base\net\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\net\HTTPRequestHandler.h">
+      <Filter>base\net\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\net\HTTPServer.h">
+      <Filter>base\net\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\net\ImplHandler.h">
+      <Filter>base\net\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ocn\base\net\StreamSocket.h">
+      <Filter>base\net\include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

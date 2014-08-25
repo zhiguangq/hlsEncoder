@@ -50,14 +50,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>F:\vcspace\server\src;F:\3rd-party\libevent-2.0.21-stable\include;F:\opensource\boost_1_54_0\;F:\3rd-party\log4cxx\include;F:\3rd-party\Poco\include;F:\3rd-party\json-c-0.9\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;GLOG_NO_ABBREVIATED_SEVERITIES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\3rd-party\libevent-2.0.21-stable\include;F:\opensource\boost_1_54_0\;F:\3rd-party\Poco\include;F:\3rd-party\json-c-0.9\include;.;C:\local\glog\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>F:\vcspace\server\bin\window\base;F:\opensource\boost_1_54_0\stage\lib;F:\3rd-party\libevent-2.0.21-stable\lib;F:\3rd-party\log4cxx\lib;F:\3rd-party\json-c-0.9\lib;F:\3rd-party\Poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>base_debug.lib;ws2_32.lib;wsock32.lib;libevent.lib;libevent_core.lib;libevent_extras.lib;log4cxx.lib;libgcc.a;libmingwex.a;libjson.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>F:\opensource\boost_1_54_0\stage\lib;F:\3rd-party\libevent-2.0.21-stable\lib;F:\3rd-party\json-c-0.9\lib;F:\3rd-party\Poco\lib;C:\local\glog\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;wsock32.lib;libevent.lib;libevent_core.lib;libevent_extras.lib;libgcc.a;libmingwex.a;libjson.a;libglog.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,6 +82,23 @@
     <ClCompile Include="HeartbeatHandler.cpp" />
     <ClCompile Include="MailClient.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ocn\base\facility\Base64.cpp" />
+    <ClCompile Include="ocn\base\facility\Clock.cpp" />
+    <ClCompile Include="ocn\base\facility\Demangle.cpp" />
+    <ClCompile Include="ocn\base\facility\ErrorMsg.cpp" />
+    <ClCompile Include="ocn\base\facility\Exception.cpp" />
+    <ClCompile Include="ocn\base\facility\Json.cpp" />
+    <ClCompile Include="ocn\base\facility\log.cpp" />
+    <ClCompile Include="ocn\base\facility\MD5.cpp" />
+    <ClCompile Include="ocn\base\facility\SysHealth.cpp" />
+    <ClCompile Include="ocn\base\facility\Thread.cpp" />
+    <ClCompile Include="ocn\base\net\HTTPClient.cpp" />
+    <ClCompile Include="ocn\base\net\HTTPConnection.cpp" />
+    <ClCompile Include="ocn\base\net\HTTPConnectionManager.cpp" />
+    <ClCompile Include="ocn\base\net\HTTPReply.cpp" />
+    <ClCompile Include="ocn\base\net\HTTPRequestHandler.cpp" />
+    <ClCompile Include="ocn\base\net\HTTPServer.cpp" />
+    <ClCompile Include="ocn\base\net\StreamSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="APIDefine.h" />
@@ -90,6 +107,30 @@
     <ClInclude Include="HeartbeatRequest.h" />
     <ClInclude Include="HeartbeatResponse.h" />
     <ClInclude Include="MailClient.h" />
+    <ClInclude Include="ocn\base\facility\Base64.h" />
+    <ClInclude Include="ocn\base\facility\Clock.h" />
+    <ClInclude Include="ocn\base\facility\Demangle.h" />
+    <ClInclude Include="ocn\base\facility\ErrorMsg.h" />
+    <ClInclude Include="ocn\base\facility\Exception.h" />
+    <ClInclude Include="ocn\base\facility\Hash.h" />
+    <ClInclude Include="ocn\base\facility\Json.h" />
+    <ClInclude Include="ocn\base\facility\log.h" />
+    <ClInclude Include="ocn\base\facility\MD5.h" />
+    <ClInclude Include="ocn\base\facility\Singleton.h" />
+    <ClInclude Include="ocn\base\facility\SysHealth.h" />
+    <ClInclude Include="ocn\base\facility\Thread.h" />
+    <ClInclude Include="ocn\base\facility\ThreadHolder.h" />
+    <ClInclude Include="ocn\base\net\GeneralError.h" />
+    <ClInclude Include="ocn\base\net\Handler.h" />
+    <ClInclude Include="ocn\base\net\HTTPClient.h" />
+    <ClInclude Include="ocn\base\net\HTTPConnection.h" />
+    <ClInclude Include="ocn\base\net\HTTPConnectionManager.h" />
+    <ClInclude Include="ocn\base\net\HTTPHeader.h" />
+    <ClInclude Include="ocn\base\net\HTTPReply.h" />
+    <ClInclude Include="ocn\base\net\HTTPRequestHandler.h" />
+    <ClInclude Include="ocn\base\net\HTTPServer.h" />
+    <ClInclude Include="ocn\base\net\ImplHandler.h" />
+    <ClInclude Include="ocn\base\net\StreamSocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
