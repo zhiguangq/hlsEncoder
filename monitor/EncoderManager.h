@@ -11,6 +11,18 @@
 
 #include <ocn/base/facility/Singleton.h>
 #include <Poco/Timestamp.h>
+#include <ocn/base/facility/Json.h>
+
+struct ActiveEncoder : public ocn::base::facility::Json
+{
+    std::vector<std::string>    EncoderAddress;
+
+private:
+	void assign()
+	{
+        JSON_ADD_OBJECT_STRING(EncoderAddress);
+	}
+};
 
 class EncoderManager : public ocn::base::facility::Singleton<EncoderManager>
 {
@@ -20,6 +32,7 @@ public:
 
     void update(const std::string& address);
 
+    void setExePath(std::string& path);
     void start(void);
 private:
     void run(void);
@@ -29,6 +42,7 @@ private:
     typedef std::map<std::string, Poco::Timestamp> EncoderMap;
     EncoderMap      m_encoderMap;
     boost::mutex    m_mutexEncoderMap;
+    std::string     m_exePath;
 };
 
 #endif

@@ -34,6 +34,7 @@ std::string LogCFG_File = "config/log.property";
 //std::string SysConfigure_File = "config/sys.cfg";
 std::string LogAppender = "A3";
 #endif
+std::string Exe_Path;
 
 using namespace std;
 
@@ -47,7 +48,8 @@ DWORD WINAPI ServiceWorkerThread (LPVOID lpParam)
         ocn::base::net::HTTPServer httpd(1);
 
         LOG(INFO) << "Setup EncoderManager...";
-        EncoderManager::instance().start();
+        EncoderManager::instance().setExePath(Exe_Path);
+        EncoderManager::instance().start();        
 
         LOG(INFO) << "Start HTTP Server...";
         httpd.registerHandler(new HeartbeatHandler());
@@ -98,9 +100,10 @@ int main(int argc, char* argv[])
 
 	// 获取本可执行文件目录
 	boost::filesystem::path  full_path = boost::filesystem::system_complete(boost::filesystem::path(argv[0]));
+    Exe_Path = full_path.parent_path().string();
 
 	// 设置INFO以上log的存放位置
-	google::SetLogDestination(google::GLOG_INFO, std::string(full_path.parent_path().string() + "\\log\\").c_str());
+	google::SetLogDestination(google::GLOG_INFO, std::string(Exe_Path + "\\log\\").c_str());
 
     //LOG_R_I("Build date is [" << __DATE__ << " - " << __TIME__ << "].");
     //LOG_R_I("Build date is " << "qiuzhiguang");

@@ -34,6 +34,16 @@ void EncoderManager::update(const std::string& address)
 
 		MailClient mail;
 		mail.Send(content);
+
+        //保存文件
+        ActiveEncoder ae;
+        if(!ae.fromJsonFile((m_exePath + "\\data\\ActiveEncoder.txt").c_str()))
+        {
+            LOG_E("open ActiveEncoder error");
+            return;
+        }
+        ae.EncoderAddress.push_back(address);
+        ae.toJson((m_exePath + "\\data\\ActiveEncoder.txt").c_str());
     }
     else
     {
@@ -43,8 +53,27 @@ void EncoderManager::update(const std::string& address)
     }
 }
 
+void EncoderManager::setExePath(std::string& path)
+{
+    m_exePath = path;
+}
+
 void EncoderManager::run(void)
 {
+    // 重新把启动前已经上报到监控的编码器load回来
+    ActiveEncoder ae;
+    if(!ae.fromJsonFile((m_exePath + "\\data\\ActiveEncoder.txt").c_str()))
+    {
+        LOG_E("open ActiveEncoder error");
+        return;
+    }
+    for(std::vector<std::string>::iterator it = ae.EncoderAddress.begin(); it != ae.EncoderAddress.end(); it++)
+    {
+        Poco::Timestamp t;
+        m_encoderMap.insert(std::pair<std::string, Poco::Timestamp>(*it,t));
+    }
+
+    //
     while(1)
     {
         {
@@ -58,11 +87,29 @@ void EncoderManager::run(void)
                 {
                     //std::cout << "delete it : " << it->second.elapsed() << std::endl;
 					std::string content = "<Error> : Encoder [" + it->first + "] Stop.";
+                    std::string address = it->first;
                     LOG_W(content);
                     m_encoderMap.erase(it++);
 
 					MailClient mail;
 					mail.Send(content);
+
+                    //保存文件
+                    ActiveEncoder ae;
+                    if(!ae.fromJsonFile((m_exePath + "\\data\\ActiveEncoder.txt").c_str()))
+                    {
+                        LOG_E("open ActiveEncoder error");
+                        return;
+                    }
+                    for(std::vector<std::string>::iterator Eit = ae.EncoderAddress.begin(); Eit != ae.EncoderAddress.end(); Eit++)
+                    {
+                        if((*Eit).compare(address) == 0)
+                        {
+                            Eit = ae.EncoderAddress.erase(Eit);
+                            break;
+                        }
+                    }
+                    ae.toJson((m_exePath + "\\data\\ActiveEncoder.txt").c_str());
                 }
                 else
                 {
