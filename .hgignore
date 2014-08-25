@@ -1,0 +1,15 @@
+glob:*.dll
+glob:*.suo
+glob:*.sdf
+glob:*.ilk
+glob:*.pdb
+glob:*.exe
+glob:*.log
+glob:*.opensdf
+glob:Debug/
+glob:ipch/
+glob:bin/log/
+
+syntax: glob
+bin/libglog.lib
+%APPDATA%/Microsoft/Windows/IETldCache/index.dat
