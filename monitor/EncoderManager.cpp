@@ -6,7 +6,7 @@
 #include <Windows.h>
 #endif
 
-#include <kugou/base/facility/log.h>
+#include <ocn/base/facility/log.h>
 
 
 EncoderManager::EncoderManager(void)
@@ -29,7 +29,7 @@ void EncoderManager::update(const std::string& address)
         // 第一次注册进来
         Poco::Timestamp t;
         m_encoderMap.insert(std::pair<std::string, Poco::Timestamp>(address,t));
-		std::string content = "<Info> : Encoder [" + address + "] Start.)";
+		std::string content = "<Info> : Encoder [" + address + "] Start.";
         LOG_I(content);
 
 		MailClient mail;

@@ -9,10 +9,10 @@
 #include <boost/thread/thread.hpp>
 #include <boost/unordered_set.hpp>
 
-#include <kugou/base/facility/Singleton.h>
+#include <ocn/base/facility/Singleton.h>
 #include <Poco/Timestamp.h>
 
-class EncoderManager : public kugou::base::facility::Singleton<EncoderManager>
+class EncoderManager : public ocn::base::facility::Singleton<EncoderManager>
 {
 public:
     EncoderManager(void);

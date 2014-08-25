@@ -3,12 +3,12 @@
 
 #include <string>
 
-#include <kugou/base/net/ImplHandler.h>
+#include <ocn/base/net/ImplHandler.h>
 #include "HeartbeatRequest.h"
 #include "HeartbeatResponse.h"
 
 
-class HeartbeatHandler : public kugou::base::net::ImplHandler<HeartbeatRequest,HeartbeatResponse>
+class HeartbeatHandler : public ocn::base::net::ImplHandler<HeartbeatRequest,HeartbeatResponse>
 {
 public:
     HeartbeatHandler(void)

@@ -2,10 +2,10 @@
 #define HEARTBEATREQUEST_H
 
 #include <string>
-#include <kugou/base/facility/Json.h>
+#include <ocn/base/facility/Json.h>
 #include "APIDefine.h"
 
-struct HeartbeatRequest : public kugou::base::facility::Json
+struct HeartbeatRequest : public ocn::base::facility::Json
 {
     /*
     int             ID;

@@ -3,9 +3,9 @@
 
 #include <string>
 #include <vector>
-#include <kugou/base/facility/Json.h>
+#include <ocn/base/facility/Json.h>
 
-struct HeartbeatResponse : public kugou::base::facility::Json
+struct HeartbeatResponse : public ocn::base::facility::Json
 {
     std::string Addr;
     std::string Port;
