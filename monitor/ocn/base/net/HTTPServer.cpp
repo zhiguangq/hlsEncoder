@@ -55,10 +55,12 @@ int HTTPServer::serv(std::string ip, int port)
         m_thread[i].reset(new boost::thread(boost::bind(HTTPServer::Dispatch, base)));
     }
 
+    /*
     for (int i = 0; i < m_threadNumber; i++) 
     {
         m_thread[i]->join();
     }
+    */
 
     return 0;
 }
