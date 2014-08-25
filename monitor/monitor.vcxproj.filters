@@ -99,6 +99,9 @@
     <ClCompile Include="ocn\base\net\StreamSocket.cpp">
       <Filter>base\net</Filter>
     </ClCompile>
+    <ClCompile Include="MessageHandler.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MailClient.h">
@@ -190,6 +193,15 @@
     </ClInclude>
     <ClInclude Include="ocn\base\net\StreamSocket.h">
       <Filter>base\net\include</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageHandler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageRequest.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageResponse.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

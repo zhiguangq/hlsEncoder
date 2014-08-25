@@ -82,6 +82,7 @@
     <ClCompile Include="HeartbeatHandler.cpp" />
     <ClCompile Include="MailClient.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MessageHandler.cpp" />
     <ClCompile Include="ocn\base\facility\Base64.cpp" />
     <ClCompile Include="ocn\base\facility\Clock.cpp" />
     <ClCompile Include="ocn\base\facility\Demangle.cpp" />
@@ -107,6 +108,9 @@
     <ClInclude Include="HeartbeatRequest.h" />
     <ClInclude Include="HeartbeatResponse.h" />
     <ClInclude Include="MailClient.h" />
+    <ClInclude Include="MessageHandler.h" />
+    <ClInclude Include="MessageRequest.h" />
+    <ClInclude Include="MessageResponse.h" />
     <ClInclude Include="ocn\base\facility\Base64.h" />
     <ClInclude Include="ocn\base\facility\Clock.h" />
     <ClInclude Include="ocn\base\facility\Demangle.h" />

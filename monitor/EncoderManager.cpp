@@ -18,6 +18,13 @@ EncoderManager::~EncoderManager(void)
 {
 }
 
+void EncoderManager::message(const std::string& address, std::string& mess)
+{
+    LOG_I("Send message : " + mess);
+	MailClient mail;
+	mail.Send(mess);
+}
+
 void EncoderManager::update(const std::string& address)
 {
     boost::mutex::scoped_lock scopedLock(m_mutexEncoderMap);

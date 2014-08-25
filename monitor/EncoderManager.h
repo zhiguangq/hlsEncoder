@@ -31,6 +31,7 @@ public:
     ~EncoderManager(void);
 
     void update(const std::string& address);
+    void message(const std::string& address, std::string& mess);
 
     void setExePath(std::string& path);
     void start(void);

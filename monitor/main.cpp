@@ -1,5 +1,6 @@
 #include <iostream>
 #include "HeartbeatHandler.h"
+#include "MessageHandler.h"
 #include "EncoderManager.h"
 
 #include <glog/logging.h>
@@ -53,6 +54,7 @@ DWORD WINAPI ServiceWorkerThread (LPVOID lpParam)
 
         LOG(INFO) << "Start HTTP Server...";
         httpd.registerHandler(new HeartbeatHandler());
+        httpd.registerHandler(new MessageHandler());
         
         //evhttp_connection_get_peer
 
