@@ -101,8 +101,6 @@ void FileDetection::run(void)
                                 {
                                     LOG(INFO)  << "Find : " << itBegin->path().string() << ".  its TS file : " <<
                                         xmlInfo.AssetName ;
-                                    TaskQueue::instance().producer(itBegin->path().string(), xmlInfo.AssetName);
-
                                     //检测TS文件是否存在，如果不存在，则通知监控
                                     if(!boost::filesystem::exists(std::string(Configure::instance().m_inputTSPath.objectName + \
                                         "\\" + xmlInfo.AssetName).c_str()))
@@ -130,6 +128,10 @@ void FileDetection::run(void)
                                             LOG(INFO) << "Send Message exception.";
                                         }
                                     }
+									else
+									{
+										TaskQueue::instance().producer(itBegin->path().string(), xmlInfo.AssetName);
+									}
 
                                     m_lastXMLGeneraateTime.update();
                                 }

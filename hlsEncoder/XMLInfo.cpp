@@ -123,6 +123,18 @@ bool XMLInfo::load(std::string inputName)
 
             pNode = it.nextNode();
         }
+
+		if(ChannelName.compare(Configure::instance().m_encodeChannelPrefix) == 0)
+		{
+			ChannelName = Configure::instance().m_encodeChannel;
+			LOG(INFO) << "xml file [" << inputName << "], its channel [" <<  ChannelName << "] OK.";
+			return true;
+		}
+		else
+		{
+			//LOG(INFO) << "xml file [" << inputName << "], its channel [" <<  ChannelName << "] is not we want, omit it.";
+			return false;
+		}
     }
     catch(std::exception& e)
     {
