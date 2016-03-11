@@ -10,6 +10,11 @@
 #include <Poco/DOM/NamedNodeMap.h>
 #include <Poco/DOM/AutoPtr.h>
 #include <Poco/SAX/InputSource.h>
+#include <Poco/DateTime.h>
+#include <Poco/RegularExpression.h>
+#include <Poco/DateTimeFormatter.h>
+#include <Poco/DateTimeFormat.h>
+#include <Poco/Foundation.h>
 
 
 XMLInfo::XMLInfo(void)
@@ -34,6 +39,7 @@ bool XMLInfo::load(std::string inputName)
 
         while (pNode)
         {
+            /*
             if(pNode->attributes())
             {
                 Poco::XML::NamedNodeMap* attrMap = pNode->attributes();
@@ -72,6 +78,46 @@ bool XMLInfo::load(std::string inputName)
                 {
 					//LOG(INFO) << "xml file [" << inputName << "], its channel [" <<  ChannelName << "] is not we want, omit it.";
                     return false;
+                }
+            }
+            */
+            if (!(pNode->nodeName().compare("Content")) && pNode->attributes()){
+                Poco::XML::NamedNodeMap* attrMap = pNode->attributes();
+                if (AssetName.empty() && \
+                    attrMap->getNamedItem("Value") && attrMap->getNamedItem("Value")->nodeValue().size() > 0)
+                {
+                    AssetName = attrMap->getNamedItem("Value")->nodeValue();
+
+                    if (AssetName.size() == 23){
+                        Poco::RegularExpression re("([A-Z0-9]{3})([A-Z0-9]{1})([0-9]{2})([0-9]{3})([0-9]{6})([0-9]{5})");
+                        Poco::RegularExpression::MatchVec matches;
+                        std::vector<std::string> strings;
+                        re.split(AssetName, 0, strings);
+
+                        int year = atoi(strings[3].c_str());
+                        int dates = atoi(strings[4].c_str());
+                        int hour = atoi(strings[5].substr(0, 2).c_str());
+                        int minute = atoi(strings[5].substr(2, 2).c_str());
+                        int second = atoi(strings[5].substr(4, 2).c_str());
+                        int dur = atoi(strings[6].c_str());
+                        Poco::DateTime base1Dt(2000 + year, 1, 1);
+                        Poco::DateTime base2Dt(base1Dt.julianDay() + (dates - 1));
+                        Poco::DateTime dt(base2Dt.year(), base2Dt.month(), base2Dt.day(), hour, minute, second);
+
+                        ChannelName = strings[1];
+                        StartTime = Poco::DateTimeFormatter::format(dt, "%Y-%m-%d %H:%M:%S");
+                        dt += Poco::Timespan(dur, 0);
+                        EndTime = Poco::DateTimeFormatter::format(dt, "%Y-%m-%d %H:%M:%S");
+                    }
+                }
+            }
+
+            if (!(pNode->nodeName().compare("AMS")) && pNode->attributes()){
+                Poco::XML::NamedNodeMap* attrMap = pNode->attributes();
+                if (EventName.empty() && \
+                    attrMap->getNamedItem("Description") && attrMap->getNamedItem("Description")->nodeValue().size() > 0)
+                {
+                    EventName = attrMap->getNamedItem("Description")->nodeValue();
                 }
             }
 
