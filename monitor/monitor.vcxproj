@@ -51,12 +51,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;GLOG_NO_ABBREVIATED_SEVERITIES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>F:\3rd-party\libevent-2.0.21-stable\include;F:\opensource\boost_1_54_0\;F:\3rd-party\Poco\include;F:\3rd-party\json-c-0.9\include;.;C:\local\glog\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\libevent-2.0.21-stable\include;C:\local\boost_1_55_0;C:\local\Poco\include;C:\local\json-c-0.9\include;C:\local\glog\include;.</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>F:\opensource\boost_1_54_0\stage\lib;F:\3rd-party\libevent-2.0.21-stable\lib;F:\3rd-party\json-c-0.9\lib;F:\3rd-party\Poco\lib;C:\local\glog\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\boost_1_55_0\lib32-msvc-10.0;C:\local\libevent-2.0.21-stable\lib;C:\local\json-c-0.9\lib;C:\local\Poco\lib;C:\local\glog\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ws2_32.lib;wsock32.lib;libevent.lib;libevent_core.lib;libevent_extras.lib;libgcc.a;libmingwex.a;libjson.a;libglog.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
